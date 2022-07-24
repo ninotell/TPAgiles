@@ -19,8 +19,8 @@ namespace Wordle.UITestAutomation
         public void TestInitialize()
         {
             var path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
-            driver = new InternetExplorerDriver(path);
-            //driver = new ChromeDriver(path);
+            //driver = new InternetExplorerDriver(path);
+            driver = new ChromeDriver(path);
             baseURL = "http://localhost:39278/";
         }
 
