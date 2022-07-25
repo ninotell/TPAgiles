@@ -7,6 +7,7 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+	<Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\Web\Microsoft.Web.Publishing.targets" />
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs.Core" Version="3.0.33" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
