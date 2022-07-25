@@ -22,7 +22,7 @@
     @using (Html.BeginForm("Game", "Home", FormMethod.Post, new { @class = "game-options-form" }))
     {
 
-        <input type="text" name="nombre" placeholder="Ingrese su nombre" class="name-input" /><br />
+        <input type="text" id="Name" name="nombre" placeholder="Ingrese su nombre" class="name-input" /><br />
         <br />
         <div class="game-option-container">
             <p for="errors">Selecciona la cantidad de errores</p>
@@ -48,7 +48,7 @@
         </div>
         <br />
 
-        <button type="submit" class="button jugar-button">Jugar ahora</button>
+        <button type="submit" id="Play" class="button jugar-button">Jugar ahora</button>
         <br />
 
     }
