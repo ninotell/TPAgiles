@@ -6,6 +6,8 @@
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+	<Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" />
+	<Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs.Core" Version="3.0.33" />
