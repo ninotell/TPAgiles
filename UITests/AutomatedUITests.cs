@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Xunit;
@@ -19,15 +20,50 @@ namespace UITests
         public void LogInTest()
         {
             _driver.Navigate()
-                .GoToUrl("https://localhost:44321/Home/Index");
-            
+                .GoToUrl("https://wordleagiles.azurewebsites.net/");
+
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
             
             _driver.FindElement(By.Id("Play"))
                 .Click();
-
-            Assert.Equal("Wordle", _driver.Title);
         }
+
+        [Fact]
+        public void PlayTest()
+        {
+
+            _driver.Navigate()
+                .GoToUrl("https://wordleagiles.azurewebsites.net/");
+
+            _driver.FindElement(By.Id("Name"))
+                .SendKeys("Juan");
+
+            _driver.FindElement(By.Id("Play"))
+                .Click();
+
+            _driver.FindElement(By.Id("palabra-intentada"))
+                .SendKeys("pato");
+
+            _driver.FindElement(By.Id("intentar-button"))
+                .Click();
+
+            _driver.FindElement(By.Id("palabra-intentada"))
+                .SendKeys("pato");
+
+            _driver.FindElement(By.Id("intentar-button"))
+                .Click();
+            
+            _driver.FindElement(By.Id("palabra-intentada"))
+                .SendKeys("pato");
+
+            _driver.FindElement(By.Id("intentar-button"))
+                .Click();
+
+            Thread.Sleep(2000);
+
+        }
+
+
     }
 }
