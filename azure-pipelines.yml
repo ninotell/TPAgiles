@@ -31,9 +31,3 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: '59ab836a-939d-4493-bbab-392295660bfc'
-    appName: 'Wordle'
-    package: $(System.DefaultWorkingDirectory)/**/*.zip  
