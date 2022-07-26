@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'wordleagiles'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_320A49BC6F974717827E0F218BAFDFE1 }}
+          publish-profile: ${{ secrets.AZURE_SECRET_AGILES }}
           package: .
