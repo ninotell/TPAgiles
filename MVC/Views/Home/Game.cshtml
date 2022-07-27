@@ -79,6 +79,10 @@
                         $("#intentar-button").removeClass("visible").addClass("hidden")
                         $("#reintentar-button").removeClass("hidden").addClass("visible")
                         $("#reintentar-button").html("Jugar de nuevo")
+                        $("#voucher").removeClass("hidden").addClass("visible")
+                        $("#copyvalue").val("WORDLE" + data.Nombre.toUpperCase())
+                        $("#voucher-value").html(data.Voucher + "%")
+
                     } else {
                         $("#palabra-intentada").attr("placeholder", "PERDEDOR.")
                         $("#intentar-button").removeClass("visible").addClass("hidden")
@@ -120,8 +124,33 @@
     <div id="palabras-container" class="input-container">
         @Html.Partial("_Palabras", Model)
     </div>
-
 </section>
+
+<div class="voucher-container hidden" id="voucher">
+    <div class="voucher-card">
+        <div class="voucher-main">
+            <div class="co-img">
+                <img src="../../Content/Assets/mcdonaldslogo.png"
+                     alt="" />
+            </div>
+            <div class="vertical"></div>
+            <div class="content">
+                <h2>Mcdonalds</h2>
+                <div style="display: flex; justify-content: flex-start; gap: 10px; align-items: center">
+                    <p id="voucher-value" style="font-size: 32px">10%</p>
+                    <span>VOUCHER</span>
+                </div>
+                <p style="font-size: 12px">Valido hasta el 18 Agosto de 2022</p>
+            </div>
+        </div>
+        <div class="copy-button">
+            <input style="text-align: center" id="copyvalue" type="text" readonly value="" />
+            <button onclick="copyIt()" class="copybtn">COPIAR</button>
+        </div>
+    </div>
+</div>
+
+
 <style>
     :root {
         --border-radius: 10px;
@@ -133,7 +162,7 @@
 
     .visible {
         display: block;
-    }    
+    }
 
     /*.main-title {
         display: block;
@@ -320,4 +349,108 @@
         justify-content: center;
         align-items: center;
     }
+
+    .voucher-container {
+        width: 100%;
+        height: 276px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        margin-top: 30px background-color: #dc143c;
+    }
+
+    .voucher-card {
+        width: 400px;
+        height: 180px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+        background-color: #dfdcdc;
+        padding: 10px 10px;
+        position: relative;
+    }
+
+    .voucher-main,
+    .copy-button {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 25px;
+        align-items: center;
+    }
+
+    .voucher-card::after, .voucher-card::before {
+        position: absolute;
+        content: "";
+        height: 40px;
+        right: -20px;
+        border-radius: 40px;
+        z-index: 1;
+        top: 70px;
+        background-color: white;
+        width: 40px;
+    }
+
+    .voucher-card::after {
+        right: -20px;
+    }
+
+    .voucher-card::before {
+        left: -20px;
+    }
+
+    .co-img img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .vertical {
+        border-left: 5px dotted black;
+        height: 100px;
+        position: absolute;
+        left: 40%;
+    }
+
+    .content h1 {
+        font-size: 35px;
+        margin-left: -20px;
+        color: #565656;
+    }
+
+    .content h1 span {
+        font-size: 18px;
+    }
+
+    .content h2 {
+        font-size: 18px;
+        margin-left: -20px;
+        color: #565656;
+        text-transform: uppercase;
+    }
+
+    .content p {
+        font-size: 16px;
+        color: #696969;
+        margin-left: -20px;
+    }
+
+    .copy-button {
+        margin: -9px 0 -37px 0;
+        height: 33px;
+        padding: 0 5px;        
+    }
+
+    .copy-button input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .copy-button button {
+        padding: 5px 20px;
+        background-color: #dc143c;
+        color: #fff;
+        border: 1px solid transparent;
+    }
+       
 </style>

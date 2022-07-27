@@ -35,6 +35,9 @@ namespace MVC.Models
         [DisplayName("Errores Cometidos")]
         public int ErroresCometidos { get; set; }
 
+        [DisplayName("Voucher")]
+        public int Voucher { get; set; }
+
         [DisplayName("Palabras Intentadas")]
         public List<string> PalabrasIntentadas { get; set; }
 

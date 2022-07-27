@@ -46,12 +46,7 @@ namespace MVC.Controllers
 
             return View(juego);
         }
-
-        //[Route("Game")]
-        //public ActionResult Game(WordleGame gameModel)
-        //{
-        //    return View(gameModel);
-        //}
+             
         
     }
 }

@@ -119,7 +119,7 @@ namespace Wordle
             if (partidaGanada)
             {
                 Random random = new Random();
-                voucher = random.Next(1000000, 9999999);
+                voucher = random.Next(10, 75);
             }
             else
             {
