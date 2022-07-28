@@ -121,7 +121,7 @@
                         { "maxlength", Model.Dificultad * 2 + 2 }
                     })
             </div>
-            <h2 id="info-text"></h2>
+            <h2 id="info-text" style="text-align: center"></h2>
         </div>
         <button id="intentar-button" type="submit" class="button intentar-button visible">Intentar!</button>
         <button id="reintentar-button" class="button reintentar-button hidden">Rententar</button>
@@ -207,11 +207,12 @@
         border-radius: var(--border-radius);
         border-bottom: 1px solid black;
         width: 50%;
+        padding-top: 9px;
         text-align: center;
         align-items: center;
         margin: 0;
         vertical-align: middle;
-    }       
+    }
 
     table {
         border-collapse: collapse;
@@ -326,7 +327,7 @@
         flex-direction: row;
         gap: 15px;
         margin-top: 15px;
-    }
+    }    
 
     .input-taken {
         border: 1px solid black;
@@ -424,6 +425,7 @@
         justify-content: center;
         align-items: center;
         display: flex;
+        flex-wrap: wrap-reverse;
         gap: 173px;
     }
 
@@ -503,7 +505,7 @@
     .copy-button {
         margin: -9px 0 -37px 0;
         height: 33px;
-        padding: 0 5px;        
+        padding: 0 5px;
     }
 
     .copy-button input {
@@ -520,5 +522,15 @@
         color: #fff;
         border: 1px solid transparent;
     }
-       
+
+    @@media only screen and (max-width : 580px) {
+        .input-section {
+            gap: 15px
+        }
+
+        .voucher-container {
+            gap: 40px
+        }
+    }
+
 </style>
