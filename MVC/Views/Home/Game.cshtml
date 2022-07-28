@@ -77,7 +77,6 @@
                 if (data.Finish) {
                     $("#palabra-intentada").attr("disabled", true)
                     if (data.Win) {
-                        alert("GANASTE, FELICITACIONES! La palabra era: " + data.Palabra.toUpperCase() + ".")
                         $("#palabra-intentada").attr("placeholder", "FELICITACIONES!!")
                         $("#intentar-button").removeClass("visible").addClass("hidden")
                         $("#reintentar-button").removeClass("hidden").addClass("visible")
@@ -85,7 +84,8 @@
                         $("#voucher").removeClass("hidden").addClass("visible")
                         $("#copyvalue").val("WORDLE" + data.Nombre.toUpperCase())
                         $("#voucher-value").html(data.Voucher + "%")
-                        $("#info-text").html("Ganaste en: " + data.ElapsedTime)
+                        $("#info-text").html("GANASTE!! En un tiempo de: " + data.ElapsedTime)
+                        $("#info-text").css({ 'color': 'green'});
 
                         for (const i in data.Puntajes) {
                             $("#puntajes-container").append(`<div class="puntaje"><span class= "nombre">${i}</span><span class="puntos">${data.Puntajes[i]}</span></div >`)
@@ -96,7 +96,8 @@
                         $("#palabra-intentada").attr("placeholder", "PERDEDOR.")
                         $("#intentar-button").removeClass("visible").addClass("hidden")
                         $("#reintentar-button").removeClass("hidden").addClass("visible")
-                        alert("GAME OVER. Te quedaste sin intentos. La palabra era " + data.Palabra.toUpperCase() + ".")
+                        $("#info-text").html("GAME OVER. Te quedaste sin intentos. La palabra era " + data.Palabra.toUpperCase() + ".")
+                        $("#info-text").css({ 'color': 'red' });                        
                     }
                 }
                 $("#palabra-intentada").val("")
