@@ -14,6 +14,10 @@
     <script type="text/javascript">
         var wordleVM = new WordleVM(@Html.Raw(data));
         ko.applyBindings(wordleVM);
+
+        $("#Play").click(function () {
+            $("#Name").attr("minlength", 3)
+        })
     </script>
 }
 <hr>
@@ -22,7 +26,7 @@
     @using (Html.BeginForm("Game", "Home", FormMethod.Post, new { @class = "game-options-form" }))
     {
 
-        <input type="text" id="Name" name="nombre" placeholder="Ingrese su nombre" class="name-input" /><br />
+        <input type="text" id="Name" name="nombre" minlength="3" placeholder="Ingrese su nombre" class="name-input" /><br />
         <br />
         <div class="game-option-container">
             <p for="errors">Selecciona la cantidad de errores</p>

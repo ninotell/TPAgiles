@@ -29,11 +29,17 @@
             location.reload(true)
         })
 
-        $("#palabra-intentada").keyup(function (event) {
+        $("#palabra-intentada").keydown(function (event) {
+            if (event.keyCode < 65 || event.keyCode > 90) {
+                if (event.keyCode != 8) {
+                    event.preventDefault()
+                }                
+            }
             if (event.keyCode === 13) {
                 $("#intentar-button").click();
             }
         });
+
 
         self.$("#intentar-button").click(function (e) {
             if (finalizado) {
@@ -88,7 +94,7 @@
                         $("#info-text").css({ 'color': 'green'});
 
                         for (const i in data.Puntajes) {
-                            $("#puntajes-container").append(`<div class="puntaje"><span class= "nombre">${i}</span><span class="puntos">${data.Puntajes[i]}</span></div >`)
+                            $("#puntajes-container").append(`<div class="puntaje"><span class= "nombre">${i}</span><span class="puntos">${data.Puntajes[i]} pts.</span></div >`)
                         }
 
 
@@ -176,14 +182,15 @@
         --border-radius: 10px;
     }
 
-    .puntajes-container{
+    .puntajes-container {
         display: flex;
         width: 350px;
         flex-direction: column;
         justify-content: center;
         border-radius: var(--border-radius);
         align-items: center;
-        border: 1px solid black
+        border-left: 1px solid black;
+        border-right: 1px solid black;
     }
 
     .puntajes-container .puntaje {
@@ -192,6 +199,11 @@
         justify-content: center;
         flex-direction: row;
         align-items: center;
+    }
+
+    .puntajes-container .puntaje:first-child span{
+        background-color: #ffc766;
+        border-top: 1px solid black;
     }
 
     .puntaje span:nth-child(1) {
@@ -212,17 +224,6 @@
         align-items: center;
         margin: 0;
         vertical-align: middle;
-    }
-
-    table {
-        border-collapse: collapse;
-        border-radius: 30px;
-        border-style: hidden; /* hide standard table (collapsed) border /
-        box-shadow: 0 0 0 1px #666; / this draws the table border  */
-    }
-
-    td {
-        border: 1px solid #ccc;
     }
 
     .hidden {

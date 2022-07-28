@@ -14,8 +14,8 @@ namespace Wordle
         public int intentos = 0, dificultad = 0, voucher = 0;
         public int maxIntentos = 5;
         public bool juegoTerminado = false, partidaGanada = false;
-        public Dictionary<string, int> puntajes = new Dictionary<string, int>() 
-        { 
+        public Dictionary<string, int> puntajes = new Dictionary<string, int>()
+        {
             ["Juan"] = 5,
             ["Carlos"] = 8,
             ["Facu"] = 9,
@@ -83,7 +83,7 @@ namespace Wordle
             VerificarPalabra(_palabra);
 
 
-            if(palabra == _palabra)
+            if (palabra == _palabra)
             {
                 partidaGanada = true;
                 TerminarJuego();
@@ -98,45 +98,24 @@ namespace Wordle
 
             return false;
 
-            /* OLD LOGIC ----
-             
-
-            if (intentos <= maxIntentos)
-            {
-                if (palabra == _palabra)
-                {
-                    partidaGanada = true;
-                    TerminarJuego();
-                    return true;
-                }
-                else
-                {
-                    if (intentos == maxIntentos)
-                    {
-                        TerminarJuego();
-                    }
-                    return false;
-                }
-            }
-            return false;
-            */
-
         }
         private void TerminarJuego()
         {
-            puntajes[nombre] = partidaGanada ? puntajes[nombre] + 1 : puntajes[nombre] - 1;
+
             if (partidaGanada)
             {
+                puntajes[nombre] += dificultad; //suma puntaje segun dificultad (1, 2 o 3)
                 Random random = new Random();
                 voucher = random.Next(10, 75);
             }
             else
             {
+                puntajes[nombre] -= 1;
                 voucher = 0;
             }
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
-            elapsedTime = String.Format("{1:00}min:{2:00}seg.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            elapsedTime = String.Format("{1:00}min {2:00}seg.", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             juegoTerminado = true;
         }
 
@@ -145,7 +124,6 @@ namespace Wordle
 
             string palabraIntentada;
 
-            //palabraIntentada = palabrasIntentadas[intentos - 1];
             palabraIntentada = _palabra;
 
             int[] frecuenciaPorLetra = new int[palabraIntentada.Length];
@@ -155,7 +133,7 @@ namespace Wordle
             for (int i = 0; i < frecuenciaPorLetra.Length; i++)
             {
                 frecuenciaPorLetra[i] = palabra.Count(l => l == palabraIntentada[i]);
-                
+
             }
 
             for (int k = 0; k < palabraIntentada.Length; k++)
@@ -171,7 +149,8 @@ namespace Wordle
                         }
 
                     }
-                } else
+                }
+                else
                 {
                     resultadoIntentado[k] = 'X';
                 }
@@ -200,34 +179,10 @@ namespace Wordle
 
                     }
                 }
-               
-            }
-            
-                //    for (int i = 0; i < palabraIntentada.Length; i++)
-                //{
-                //    if (palabraIntentada[i] == palabra[i])
-                //    {
-                //        resultadoIntentado[i] = 'O';
-                //    }
-                //    else
-                //    {
-                //        for (int j = 0; j < palabraIntentada.Length; j++)
-                //        {
-                //            if (palabraIntentada[i] == palabra[j])
-                //            {
-                //                resultadoIntentado[i] = '-';
-                //                break;
-                //            }
-                //            else
-                //            {
-                //                resultadoIntentado[i] = 'X';
-                //            }
-                //        }
-                //    }
 
-                //}
-                //Console.WriteLine(resultadoIntentado);
-                string res = new string(resultadoIntentado);
+            }
+
+            string res = new string(resultadoIntentado);
             resultadoIntentos.Add(res);
         }
 
