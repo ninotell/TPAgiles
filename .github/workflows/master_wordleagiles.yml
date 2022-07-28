@@ -35,8 +35,7 @@ jobs:
           path: '/published/**'
           
   test:
-    runs-on: windows-lastest 
-    needs: build
+    runs-on: windows-latest 
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
