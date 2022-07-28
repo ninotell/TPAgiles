@@ -33,10 +33,27 @@ jobs:
         with:
           name: ASP-app
           path: '/published/**'
-
+          
+  test:
+    runs-on: windows-lastest 
+    needs: build
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0
+        
+    - name: Install dependencies
+      run: dotnet restore
+      
+    - name: Test
+      run: dotnet test UITests/UITests.csproj --no-restore --verbosity normal
+    
+    
   deploy:
     runs-on: windows-latest
-    needs: build
+    needs: test
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
