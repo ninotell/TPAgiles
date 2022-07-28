@@ -38,6 +38,12 @@ namespace MVC.Models
         [DisplayName("Voucher")]
         public int Voucher { get; set; }
 
+        [DisplayName("Tiempo")]
+        public string ElapsedTime { get; set; }
+
+        [DisplayName("Puntajes")]
+        public Dictionary<string, int> Puntajes { get; set; }
+
         [DisplayName("Palabras Intentadas")]
         public List<string> PalabrasIntentadas { get; set; }
 

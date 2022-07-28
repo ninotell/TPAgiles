@@ -20,6 +20,8 @@ namespace MVC.Controllers
         {
             model.PalabraIntentada = palabra;
             model.Win = Juego.IntentarPalabra(model.PalabraIntentada);
+            model.ElapsedTime = Juego.elapsedTime;
+            model.Puntajes = Juego.puntajes;
             model.Nombre = Juego.nombre;
             model.Voucher = Juego.voucher;
             model.ResultadosIntentos = Juego.resultadoIntentos;

@@ -14,7 +14,16 @@ namespace Wordle
         public int intentos = 0, dificultad = 0, voucher = 0;
         public int maxIntentos = 5;
         public bool juegoTerminado = false, partidaGanada = false;
-        public Dictionary<string, int> puntajes = new Dictionary<string, int>() { };
+        public Dictionary<string, int> puntajes = new Dictionary<string, int>() 
+        { 
+            ["Juan"] = 5,
+            ["Carlos"] = 8,
+            ["Facu"] = 9,
+            ["Fede"] = 12,
+            ["Pato"] = 6,
+            ["Usuario6"] = 18,
+            ["Usuario14"] = 17,
+        };
         public List<string> palabrasIntentadas = new List<string>();
         public List<string> resultadoIntentos = new List<string>();
         readonly Stopwatch stopWatch = new Stopwatch();
@@ -127,7 +136,7 @@ namespace Wordle
             }
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
-            elapsedTime = String.Format("{0:00}hs:{1:00}min:{2:00}seg.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            elapsedTime = String.Format("{1:00}min:{2:00}seg.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
             juegoTerminado = true;
         }
 
