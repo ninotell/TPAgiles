@@ -28,6 +28,9 @@ jobs:
       - name: Publish to folder
         run: msbuild .\MVC\MVC.csproj /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
 
+      - name: Run a one-line script
+        run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /help'
+        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
@@ -46,7 +49,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
       
-    - name: Test
+    - name: UITest
       run: dotnet test UITests/UITests.csproj --no-restore --verbosity normal
     
     
