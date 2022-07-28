@@ -29,7 +29,7 @@ jobs:
         run: msbuild .\MVC\MVC.csproj /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
 
       - name: Run a one-line script
-        run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe"'
+        run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /testcontainer[WordleTests\obj\Debug\WordleTests.dll]'
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
