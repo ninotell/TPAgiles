@@ -36,7 +36,6 @@ jobs:
           
   tests:
     runs-on: windows-latest
-    needs: build
     steps:
     - uses: actions/checkout@v2
     
@@ -72,7 +71,7 @@ jobs:
     
   deploy:
     runs-on: windows-latest
-    needs: tests
+    needs: [build, tests]
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
