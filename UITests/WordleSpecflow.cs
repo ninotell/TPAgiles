@@ -14,7 +14,7 @@ namespace UITests
 
         public IWebDriver _driver;
         //String path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
-        public String baseURL = "https://localhost:44321/";
+        public String baseURL = "https://localhost:8080/";
         public WordleSpecflow() => _driver = new ChromeDriver();
 
         public void Dispose()
