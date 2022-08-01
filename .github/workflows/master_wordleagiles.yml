@@ -34,7 +34,7 @@ jobs:
           name: ASP-app
           path: '/published/**'
           
-  unit-tests:
+  tests:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -57,10 +57,21 @@ jobs:
     - name: Run unit tests
       run:  'vstest.console.exe AhorcadoTests\bin\Debug\WordleTests.dll'
         
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.202
+        
+    - name: Install dependencies
+      run: dotnet restore
+      
+    - name: Run UITests
+      run: dotnet test UITests/UITests.csproj --no-restore --verbosity normal
+    
     
   deploy:
     runs-on: windows-latest
-    needs: [build, unit-tests]
+    needs: [build, tests]
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -79,18 +90,3 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_320A49BC6F974717827E0F218BAFDFE1 }}
           package: .
-
-  ui-tests:
-    runs-on: windows-latest
-    needs: deploy
-    steps:
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-            dotnet-version: 6.0.202
-        
-      - name: Install dependencies
-        run: dotnet restore
-      
-      - name: Run UITests
-        run: dotnet test UITests/UITests.csproj --no-restore --verbosity normal
