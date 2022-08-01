@@ -14,7 +14,7 @@ namespace UITests
 
         public IWebDriver _driver;
         //String path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
-        public String baseURL = "https://wordleagiles.azurewebsites.net/";
+        public String baseURL = "https://localhost:44321/";
         public WordleSpecflow() => _driver = new ChromeDriver();
 
         public void Dispose()
@@ -68,6 +68,37 @@ namespace UITests
                 Thread.Sleep(1000);
             }
 
+
+        }
+        [Fact]
+        public void WinGame()
+        {
+            _driver.Navigate()
+                .GoToUrl(baseURL);
+
+            Thread.Sleep(5000);
+
+            _driver.FindElement(By.Id("Name"))
+                .SendKeys("Juan");
+
+            Thread.Sleep(1000);
+
+            _driver.FindElement(By.Id("Play"))
+                .Click();
+
+            var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
+            var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
+            var juegoGanado = _driver.FindElement(By.Id("juego-ganado"));
+
+            string[] palabras = new string[] { "CASA", "PATO", "LORO", "AUTO" };
+
+            foreach (var palabra in palabras)
+            {
+                palabraIntentada.SendKeys(palabra);
+                btnIntentar.Click();
+                if (juegoGanado.GetAttribute("value") == "true") { Thread.Sleep(1000); break; }
+                Thread.Sleep(1000);
+            }
 
         }
 

@@ -83,6 +83,7 @@
                 if (data.Finish) {
                     $("#palabra-intentada").attr("disabled", true)
                     if (data.Win) {
+                        $("#juego-ganado").val("true");
                         $("#palabra-intentada").attr("placeholder", "FELICITACIONES!!")
                         $("#intentar-button").removeClass("visible").addClass("hidden")
                         $("#reintentar-button").removeClass("hidden").addClass("visible")
@@ -99,6 +100,7 @@
 
 
                     } else {
+                        $("#juego-ganado").val("false");
                         $("#palabra-intentada").attr("placeholder", "PERDEDOR.")
                         $("#intentar-button").removeClass("visible").addClass("hidden")
                         $("#reintentar-button").removeClass("hidden").addClass("visible")
@@ -142,6 +144,9 @@
         @Html.Partial("_Palabras", Model)
     </div>
 </section>
+
+@*Input hidden para UI Tests*@
+<input id="juego-ganado" class="hidden" disabled="disabled" hidden="hidden" value="false" />
 
 
 <div class="voucher-container hidden" id="voucher">
