@@ -11,7 +11,7 @@ namespace UITests
     [TechTalk.SpecFlow.Binding]
     public class WordleSpecflow : IDisposable
     {
-        private int time = 3000;
+        private int time = 8000;
 
         public IWebDriver _driver;
         //String path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
