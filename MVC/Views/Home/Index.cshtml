@@ -17,6 +17,7 @@
 
         $("#Play").click(function () {
             $("#Name").attr("minlength", 3)
+            $("#Name").attr("required", "required")
         })
     </script>
 }
@@ -26,7 +27,7 @@
     @using (Html.BeginForm("Game", "Home", FormMethod.Post, new { @class = "game-options-form" }))
     {
 
-        <input type="text" id="Name" name="nombre" minlength="3" placeholder="Ingrese su nombre" class="name-input" /><br />
+        <input type="text" id="Name" required="required" name="nombre" minlength="3" placeholder="Ingrese su nombre" class="name-input" /><br />
         <br />
         <div class="game-option-container">
             <p for="errors">Selecciona la cantidad de errores</p>
