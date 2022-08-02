@@ -136,12 +136,12 @@ namespace UITests
                 btnIntentar.Click();
                 if (juegoGanado.GetAttribute("value") == "true") 
                 { 
-                    Thread.Sleep(1000);
-                    Assert.Equal("true",juegoGanado.GetAttribute("value"));
                     break;
                 }
                 Thread.Sleep(1000);
             }
+
+            Assert.Equal("true", juegoGanado.GetAttribute("value"));
 
         }
 
