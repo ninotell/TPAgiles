@@ -14,7 +14,7 @@ namespace UITests
 
         public IWebDriver _driver;
         //String path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
-        public String baseURL = "http://wordleagiles.azurewebsites.net/";
+        public String baseURL = "https://wordleagiles.azurewebsites.net/";
         public WordleSpecflow() => _driver = new ChromeDriver();
 
         public void Dispose()
@@ -42,7 +42,7 @@ namespace UITests
         }
 
         [Fact]
-        public void WhenIEnterJuanAsThePalabraIntentadaThreeTimes()
+        public void EnterWord()
         {
 
             _driver.Navigate()
@@ -61,15 +61,53 @@ namespace UITests
             var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
             var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
 
-            for (int i = 0; i < 3; i++)
+            string palabra = "JUAN";
+
+            palabraIntentada.SendKeys(palabra);
+            btnIntentar.Click();
+            Thread.Sleep(1000);
+
+            for (int i = 0; i < palabra.Length; i++)
             {
-                palabraIntentada.SendKeys("juan");                
-                btnIntentar.Click();
-                Thread.Sleep(1000);
+                string letra = _driver.FindElement(By.Id("0" + i)).GetAttribute("innerHTML");
+                Assert.Equal(letra, Char.ToString(palabra[i]));                
             }
 
-
         }
+
+        [Fact]
+        public void LoseGame()
+        {
+
+            _driver.Navigate()
+                .GoToUrl(baseURL);
+
+            Thread.Sleep(5000);
+
+            _driver.FindElement(By.Id("Name"))
+                .SendKeys("Juan");
+
+            Thread.Sleep(1000);
+
+            _driver.FindElement(By.Id("Play"))
+                .Click();
+
+            var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
+            var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
+            var juegoGanado = _driver.FindElement(By.Id("juego-ganado"));
+
+            string palabra = "JUAN";
+
+            for (int i = 0; i < 4; i++)
+            {
+                palabraIntentada.SendKeys(palabra);                
+                btnIntentar.Click();
+            }
+
+            Assert.Equal("false", juegoGanado.GetAttribute("value"));
+            Thread.Sleep(1000);
+        }
+
         [Fact]
         public void WinGame()
         {
@@ -96,7 +134,12 @@ namespace UITests
             {
                 palabraIntentada.SendKeys(palabra);
                 btnIntentar.Click();
-                if (juegoGanado.GetAttribute("value") == "true") { Thread.Sleep(1000); break; }
+                if (juegoGanado.GetAttribute("value") == "true") 
+                { 
+                    Thread.Sleep(1000);
+                    Assert.Equal("true",juegoGanado.GetAttribute("value"));
+                    break;
+                }
                 Thread.Sleep(1000);
             }
 
