@@ -68,7 +68,7 @@
                             : data.ResultadosIntentos[i][j] == "-"
                                 ? $("#input-row" + i).append("<div style='background-color: #c9b458' class='col input-text' id='input-text" + i + j + "'></div >")
                                 : $("#input-row" + i).append("<div style='background-color: #6aaa64' class='col input-text' id='input-text" + i + j + "'></div >")
-                        $("#input-text" + i + j).append("<p class='input-value'>" + data.PalabrasIntentadas[i][j] + "</p>")
+                        $("#input-text" + i + j).append("<p class='input-value' id='" + i + j + "'>" + data.PalabrasIntentadas[i][j] + "</p>")
                     }
                 }
                 for (var i = 0; i < (data.ErroresPosibles - data.PalabrasIntentadas.length); i++) {
@@ -146,7 +146,7 @@
 </section>
 
 @*Input hidden para UI Tests*@
-<input id="juego-ganado" class="hidden" disabled="disabled" hidden="hidden" value="false" />
+<input id="juego-ganado" class="hidden" hidden="hidden" value="false" />
 
 
 <div class="voucher-container hidden" id="voucher">
