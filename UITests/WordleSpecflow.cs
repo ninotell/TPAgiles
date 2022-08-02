@@ -63,6 +63,8 @@ namespace UITests
 
             string palabra = "JUAN";
 
+            Thread.Sleep(5000);
+
             palabraIntentada.SendKeys(palabra);
             btnIntentar.Click();
             Thread.Sleep(1000);
@@ -98,6 +100,8 @@ namespace UITests
 
             string palabra = "JUAN";
 
+            Thread.Sleep(5000);
+
             for (int i = 0; i < 4; i++)
             {
                 palabraIntentada.SendKeys(palabra);                
@@ -129,6 +133,8 @@ namespace UITests
             var juegoGanado = _driver.FindElement(By.Id("juego-ganado"));
 
             string[] palabras = new string[] { "CASA", "PATO", "LORO", "AUTO" };
+
+            Thread.Sleep(5000);
 
             foreach (var palabra in palabras)
             {
