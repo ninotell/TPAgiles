@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-test:
     runs-on: windows-latest
 
     steps:
@@ -25,6 +25,17 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore
 
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+            dotnet-version: 6.0.202
+
+      - name: Setup VSTest Path
+        uses: darenm/Setup-VSTest@v1
+        
+      - name: Install dependencies
+        run: dotnet restore
+
       - name: Publish to folder
         run: msbuild .\MVC\MVC.csproj /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="\published\"
 
@@ -33,45 +44,20 @@ jobs:
         with:
           name: ASP-app
           path: '/published/**'
-          
-  tests:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v2
-    
-    - name: Setup MSBuild path
-      uses: microsoft/setup-msbuild@v1.0.2
-      
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.5
 
-    - name: Restore NuGet packages
-      run: nuget restore
-    
-    - name: Setup VSTest Path
-      uses: darenm/Setup-VSTest@v1
-    
-    - name: Build unit tests
-      run: msbuild AhorcadoTests\WordleTests.csproj
-    
-    - name: Run unit tests
-      run:  'vstest.console.exe AhorcadoTests\bin\Debug\WordleTests.dll'
-        
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.202
-        
-    - name: Install dependencies
-      run: dotnet restore
-      
-    - name: Run UITests
-      run: dotnet test UITests/UITests.csproj --no-restore --verbosity normal
+      - name: Build unit tests
+        run: msbuild AhorcadoTests\WordleTests.csproj
+
+      - name: Run unit tests
+        run:  'vstest.console.exe AhorcadoTests\bin\Debug\WordleTests.dll'
+          
+      - name: Run UITests
+        run: dotnet test UITests/UITests.csproj --no-restore --verbosity normal
     
     
   deploy:
     runs-on: windows-latest
-    needs: [build, tests]
+    needs: [build-and-test]
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}

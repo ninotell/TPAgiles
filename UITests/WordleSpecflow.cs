@@ -41,115 +41,115 @@ namespace UITests
                 .Click();
         }
 
-        [Fact]
-        public void EnterWord()
-        {
+        //[Fact]
+        //public void EnterWord()
+        //{
 
-            _driver.Navigate()
-                .GoToUrl(baseURL);
+        //    _driver.Navigate()
+        //        .GoToUrl(baseURL);
 
-            Thread.Sleep(5000);
+        //    Thread.Sleep(5000);
 
-            _driver.FindElement(By.Id("Name"))
-                .SendKeys("Juan");
+        //    _driver.FindElement(By.Id("Name"))
+        //        .SendKeys("Juan");
 
-            Thread.Sleep(1000);
+        //    Thread.Sleep(1000);
 
-            _driver.FindElement(By.Id("Play"))
-                .Click();
+        //    _driver.FindElement(By.Id("Play"))
+        //        .Click();
 
-            var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
-            var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
+        //    var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
+        //    var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
 
-            string palabra = "JUAN";
+        //    string palabra = "JUAN";
 
-            Thread.Sleep(5000);
+        //    Thread.Sleep(5000);
 
-            palabraIntentada.SendKeys(palabra);
-            btnIntentar.Click();
-            Thread.Sleep(1000);
+        //    palabraIntentada.SendKeys(palabra);
+        //    btnIntentar.Click();
+        //    Thread.Sleep(1000);
 
-            for (int i = 0; i < palabra.Length; i++)
-            {
-                string letra = _driver.FindElement(By.Id("0" + i)).GetAttribute("innerHTML");
-                Assert.Equal(letra, Char.ToString(palabra[i]));                
-            }
+        //    for (int i = 0; i < palabra.Length; i++)
+        //    {
+        //        string letra = _driver.FindElement(By.Id("0" + i)).GetAttribute("innerHTML");
+        //        Assert.Equal(letra, Char.ToString(palabra[i]));                
+        //    }
 
-        }
+        //}
 
-        [Fact]
-        public void LoseGame()
-        {
+        //[Fact]
+        //public void LoseGame()
+        //{
 
-            _driver.Navigate()
-                .GoToUrl(baseURL);
+        //    _driver.Navigate()
+        //        .GoToUrl(baseURL);
 
-            Thread.Sleep(5000);
+        //    Thread.Sleep(5000);
 
-            _driver.FindElement(By.Id("Name"))
-                .SendKeys("Juan");
+        //    _driver.FindElement(By.Id("Name"))
+        //        .SendKeys("Juan");
 
-            Thread.Sleep(1000);
+        //    Thread.Sleep(1000);
 
-            _driver.FindElement(By.Id("Play"))
-                .Click();
+        //    _driver.FindElement(By.Id("Play"))
+        //        .Click();
 
-            var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
-            var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
-            var juegoGanado = _driver.FindElement(By.Id("juego-ganado"));
+        //    var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
+        //    var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
+        //    var juegoGanado = _driver.FindElement(By.Id("juego-ganado"));
 
-            string palabra = "JUAN";
+        //    string palabra = "JUAN";
 
-            Thread.Sleep(5000);
+        //    Thread.Sleep(5000);
 
-            for (int i = 0; i < 4; i++)
-            {
-                palabraIntentada.SendKeys(palabra);                
-                btnIntentar.Click();
-            }
+        //    for (int i = 0; i < 4; i++)
+        //    {
+        //        palabraIntentada.SendKeys(palabra);                
+        //        btnIntentar.Click();
+        //    }
 
-            Assert.Equal("false", juegoGanado.GetAttribute("value"));
-            Thread.Sleep(1000);
-        }
+        //    Assert.Equal("false", juegoGanado.GetAttribute("value"));
+        //    Thread.Sleep(1000);
+        //}
 
-        [Fact]
-        public void WinGame()
-        {
-            _driver.Navigate()
-                .GoToUrl(baseURL);
+        //[Fact]
+        //public void WinGame()
+        //{
+        //    _driver.Navigate()
+        //        .GoToUrl(baseURL);
 
-            Thread.Sleep(5000);
+        //    Thread.Sleep(5000);
 
-            _driver.FindElement(By.Id("Name"))
-                .SendKeys("Juan");
+        //    _driver.FindElement(By.Id("Name"))
+        //        .SendKeys("Juan");
 
-            Thread.Sleep(1000);
+        //    Thread.Sleep(1000);
 
-            _driver.FindElement(By.Id("Play"))
-                .Click();
+        //    _driver.FindElement(By.Id("Play"))
+        //        .Click();
 
-            var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
-            var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
-            var juegoGanado = _driver.FindElement(By.Id("juego-ganado"));
+        //    var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
+        //    var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
+        //    var juegoGanado = _driver.FindElement(By.Id("juego-ganado"));
 
-            string[] palabras = new string[] { "CASA", "PATO", "LORO", "AUTO" };
+        //    string[] palabras = new string[] { "CASA", "PATO", "LORO", "AUTO" };
 
-            Thread.Sleep(5000);
+        //    Thread.Sleep(5000);
 
-            foreach (var palabra in palabras)
-            {
-                palabraIntentada.SendKeys(palabra);
-                btnIntentar.Click();
-                if (juegoGanado.GetAttribute("value") == "true") 
-                { 
-                    break;
-                }
-                Thread.Sleep(1000);
-            }
+        //    foreach (var palabra in palabras)
+        //    {
+        //        palabraIntentada.SendKeys(palabra);
+        //        btnIntentar.Click();
+        //        if (juegoGanado.GetAttribute("value") == "true") 
+        //        { 
+        //            break;
+        //        }
+        //        Thread.Sleep(1000);
+        //    }
 
-            Assert.Equal("true", juegoGanado.GetAttribute("value"));
+        //    Assert.Equal("true", juegoGanado.GetAttribute("value"));
 
-        }
+        //}
 
 
 
