@@ -11,10 +11,11 @@ namespace UITests
     [TechTalk.SpecFlow.Binding]
     public class WordleSpecflow : IDisposable
     {
+        private int time = 3000;
 
         public IWebDriver _driver;
         //String path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
-        public String baseURL = "https://wordleagiles.azurewebsites.net/";
+        public String baseURL = "https://localhost:44321/";
         public WordleSpecflow() => _driver = new ChromeDriver();
 
         public void Dispose()
@@ -30,7 +31,7 @@ namespace UITests
             _driver.Navigate()
                 .GoToUrl(baseURL);
 
-            Thread.Sleep(8000);
+            Thread.Sleep(time);
 
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
@@ -48,7 +49,7 @@ namespace UITests
             _driver.Navigate()
                 .GoToUrl(baseURL);
 
-            Thread.Sleep(8000);
+            Thread.Sleep(time);
 
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
@@ -63,7 +64,7 @@ namespace UITests
 
             string palabra = "JUAN";
 
-            Thread.Sleep(8000);
+            Thread.Sleep(time);
 
             palabraIntentada.SendKeys(palabra);
             btnIntentar.Click();
@@ -84,7 +85,7 @@ namespace UITests
             _driver.Navigate()
                 .GoToUrl(baseURL);
 
-            Thread.Sleep(8000);
+            Thread.Sleep(time);
 
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
@@ -98,10 +99,12 @@ namespace UITests
             var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
             var juegoGanado = _driver.FindElement(By.Id("juego-ganado"));
 
-            Thread.Sleep(8000);
+            Thread.Sleep(time);
             
             string palabra = "JUAN";
-                      
+
+            ((IJavaScriptExecutor)_driver).ExecuteScript("document.getElementById('intentar-button').style.display='block';");
+
             for (int i = 0; i < 4; i++)
             {
                 palabraIntentada.SendKeys(palabra);                
@@ -117,7 +120,7 @@ namespace UITests
             _driver.Navigate()
                 .GoToUrl(baseURL);
 
-            Thread.Sleep(8000);
+            Thread.Sleep(time);
 
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
@@ -133,7 +136,8 @@ namespace UITests
 
             string[] palabras = new string[] { "CASA", "PATO", "LORO", "AUTO" };
 
-            Thread.Sleep(8000);
+            Thread.Sleep(time);
+            ((IJavaScriptExecutor)_driver).ExecuteScript("document.getElementById('intentar-button').style.display='block';");
 
             foreach (var palabra in palabras)
             {
@@ -144,6 +148,9 @@ namespace UITests
                     break;
                 }
             }
+
+            
+            Thread.Sleep(time);
 
             Assert.Equal("true", juegoGanado.GetAttribute("value"));
 
