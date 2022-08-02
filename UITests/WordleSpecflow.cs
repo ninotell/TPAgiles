@@ -5,6 +5,7 @@ using System;
 using TechTalk.SpecFlow;
 using System.Threading;
 using Xunit;
+using OpenQA.Selenium.Support.UI;
 
 namespace UITests
 {
@@ -67,7 +68,9 @@ namespace UITests
             Thread.Sleep(time);
 
             palabraIntentada.SendKeys(palabra);
+            Thread.Sleep(500);
             btnIntentar.Click();
+
             Thread.Sleep(1000);
 
             for (int i = 0; i < palabra.Length; i++)
@@ -107,7 +110,8 @@ namespace UITests
 
             for (int i = 0; i < 4; i++)
             {
-                palabraIntentada.SendKeys(palabra);                
+                palabraIntentada.SendKeys(palabra);
+                Thread.Sleep(500);
                 btnIntentar.Click();
             }
 
@@ -142,6 +146,7 @@ namespace UITests
             foreach (var palabra in palabras)
             {
                 palabraIntentada.SendKeys(palabra);
+                Thread.Sleep(500);
                 btnIntentar.Click();
                 if (juegoGanado.GetAttribute("value") == "true") 
                 { 
