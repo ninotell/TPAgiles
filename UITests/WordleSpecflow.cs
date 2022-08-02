@@ -30,7 +30,7 @@ namespace UITests
             _driver.Navigate()
                 .GoToUrl(baseURL);
 
-            Thread.Sleep(5000);
+            Thread.Sleep(8000);
 
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
@@ -48,7 +48,7 @@ namespace UITests
             _driver.Navigate()
                 .GoToUrl(baseURL);
 
-            Thread.Sleep(5000);
+            Thread.Sleep(8000);
 
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
@@ -63,7 +63,7 @@ namespace UITests
 
             string palabra = "JUAN";
 
-            Thread.Sleep(5000);
+            Thread.Sleep(8000);
 
             palabraIntentada.SendKeys(palabra);
             btnIntentar.Click();
@@ -84,7 +84,7 @@ namespace UITests
             _driver.Navigate()
                 .GoToUrl(baseURL);
 
-            Thread.Sleep(5000);
+            Thread.Sleep(8000);
 
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
@@ -98,10 +98,10 @@ namespace UITests
             var btnIntentar = _driver.FindElement(By.Id("intentar-button"));
             var juegoGanado = _driver.FindElement(By.Id("juego-ganado"));
 
+            Thread.Sleep(8000);
+            
             string palabra = "JUAN";
-
-            Thread.Sleep(5000);
-
+                      
             for (int i = 0; i < 4; i++)
             {
                 palabraIntentada.SendKeys(palabra);                
@@ -109,7 +109,6 @@ namespace UITests
             }
 
             Assert.Equal("false", juegoGanado.GetAttribute("value"));
-            Thread.Sleep(1000);
         }
 
         [Fact]
@@ -118,7 +117,7 @@ namespace UITests
             _driver.Navigate()
                 .GoToUrl(baseURL);
 
-            Thread.Sleep(5000);
+            Thread.Sleep(8000);
 
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
@@ -134,7 +133,7 @@ namespace UITests
 
             string[] palabras = new string[] { "CASA", "PATO", "LORO", "AUTO" };
 
-            Thread.Sleep(5000);
+            Thread.Sleep(8000);
 
             foreach (var palabra in palabras)
             {
@@ -144,7 +143,6 @@ namespace UITests
                 { 
                     break;
                 }
-                Thread.Sleep(1000);
             }
 
             Assert.Equal("true", juegoGanado.GetAttribute("value"));
