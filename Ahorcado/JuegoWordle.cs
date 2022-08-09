@@ -125,19 +125,19 @@ namespace Wordle
         {
             if (ts.Hours == 0 && ts.Minutes < 1)
             {
-                voucher = (25 + dificultad) - (maxIntentos * 2 * dificultad);
+                voucher = (25 * dificultad) - (maxIntentos * 2 * dificultad);
                 return;
             }
 
             if (ts.Hours == 0 && ts.Minutes >= 1 && ts.Minutes < 3)
             {
-                voucher = (15 + dificultad) - (maxIntentos * 1 * dificultad);
+                voucher = (15 * dificultad) - (maxIntentos * 1 * dificultad);
                 return;
             }
 
             if (ts.Hours == 0 && ts.Minutes >= 3 && ts.Minutes < 10)
             {
-                voucher = (10 + dificultad) - (maxIntentos * 1 * dificultad);
+                voucher = (10 * dificultad) - (maxIntentos * 1 * dificultad);
                 return;
             }
             voucher = 5;
