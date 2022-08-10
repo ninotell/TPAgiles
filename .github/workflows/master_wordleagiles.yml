@@ -49,7 +49,7 @@ jobs:
         run: msbuild AhorcadoTests\WordleTests.csproj
 
       - name: Run unit tests
-        run:  'vstest.console.exe AhorcadoTests\bin\Debug\WordleTests.dll /Enablecodecoverage'
+        run:  'vstest.console.exe AhorcadoTests\bin\Debug\WordleTests.dll /Enablecodecoverage /Settings:test.runsettings'
           
       - name: Run UITests
         run: dotnet test UITests/UITests.csproj --no-restore --verbosity normal
