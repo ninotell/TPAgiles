@@ -45,11 +45,15 @@ jobs:
           name: ASP-app
           path: '/published/**'
 
-      - name: Build unit tests
-        run: msbuild AhorcadoTests\WordleTests.csproj
+      - name: Unit tests
+        run: |
+                dotnet sonarscanner begin /o:"ninotell" /k:"ninotell_TPAgiles" /d:sonar.login="b758f9ec0969c33bd004383e176eb4b13fa1bc03" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml;
 
-      - name: Run unit tests
-        run:  'vstest.console.exe AhorcadoTests\bin\Debug\WordleTests.dll /Enablecodecoverage /Settings:test.runsettings'
+                msbuild AhorcadoTests\WordleTests.csproj;
+      
+                dotnet-coverage collect 'dotnet test "C:\Users\ninot\source\repos\TPAgiles\AhorcadoTests\bin\Debug\WordleTests.dll"' -f xml  -o 'coverage.xml';
+
+                dotnet sonarscanner end /d:sonar.login="b758f9ec0969c33bd004383e176eb4b13fa1bc03";
           
       - name: Run UITests
         run: dotnet test UITests/UITests.csproj --no-restore --verbosity normal
