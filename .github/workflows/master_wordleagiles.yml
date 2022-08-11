@@ -51,7 +51,7 @@ jobs:
 
             dotnet tool install --global dotnet-coverage;
                 
-            dotnet sonarscanner begin /o:"ninotell" /k:"ninotell_TPAgiles" /d:sonar.login="b758f9ec0969c33bd004383e176eb4b13fa1bc03" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml;
+            dotnet sonarscanner begin /d:sonar.host.url="https://sonarcloud.io" /o:"ninotell" /k:"ninotell_TPAgiles" /d:sonar.login="b758f9ec0969c33bd004383e176eb4b13fa1bc03" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml;
 
             msbuild AhorcadoTests\WordleTests.csproj;
       
