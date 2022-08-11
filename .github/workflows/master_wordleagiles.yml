@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'microsoft' # See 'Supported distributions' for available options
-          java-version: '8'
+          java-version: '11.0.13'
 
       - name: Setup MSBuild path
         uses: microsoft/setup-msbuild@v1.0.2
