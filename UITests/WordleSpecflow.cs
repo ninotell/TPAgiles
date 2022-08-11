@@ -17,6 +17,7 @@ namespace UITests
         public IWebDriver _driver;
         //String path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
         public String baseURL = "https://wordleagiles.azurewebsites.net/";
+        //public String baseURL = "https://localhost:44321/";
         public WordleSpecflow() => _driver = new ChromeDriver();
 
         public void Dispose()
@@ -25,8 +26,10 @@ namespace UITests
             _driver.Dispose();
         }
 
+        [BeforeScenario]
 
         [Fact]
+        [Given(@"I have entered default Errors and Difficulty")]
         public void GivenIHaveEnteredJuanAsName()
         {
             _driver.Navigate()
@@ -34,6 +37,28 @@ namespace UITests
 
             Thread.Sleep(time);
 
+
+
+            _driver.FindElement(By.Id("Name"))
+                .SendKeys("Juan");
+
+            Thread.Sleep(1000);
+
+            _driver.FindElement(By.Id("Play"))
+                .Click();
+
+            Thread.Sleep(1000);
+
+            //var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
+
+            //var bienvenida = _driver.FindElement(By.Id("nametag"));
+
+            //Assert.Equal("Bienvenido Juan!", _driver.FindElement(By.Id("nametag")).GetAttribute("value"));
+        }
+
+        [When(@"I enter Juan as the Name")]
+        public void WhenIEnterJuanAsTheName()
+        {
             _driver.FindElement(By.Id("Name"))
                 .SendKeys("Juan");
 
@@ -43,7 +68,25 @@ namespace UITests
                 .Click();
         }
 
+        [Then(@"I should be told Bienvenido JUAN")]
+
+        public void ThenIShouldBeToldBienvenidoJUAN()
+        {
+            //string bienvenida = _driver.FindElement(By.Id("nametag")).Text;
+           // Assert.NotEqual("Bienvenido Juan!", _driver.FindElement(By.Id("nametag")));
+        }
+
+        [AfterScenario]
+
+
+
+
         [Fact]
+
+        [Given(@"I have entered Juan as the name and default Errors and Difficulty")]
+        [When(@"I enter Juan as the word to guess")]
+        [Then(@"I should see the word and be told it is incorrect")]
+
         public void EnterWord()
         {
 
@@ -82,6 +125,11 @@ namespace UITests
         }
 
         [Fact]
+
+        [Given(@"I have entered Juan as the name and default Errors and Difficulty")]
+        [When(@"I enter Juan as the word to guess 4 times")]
+        [Then(@"I should be told that I lost")]
+
         public void LoseGame()
         {
 
@@ -121,6 +169,11 @@ namespace UITests
         }
 
         [Fact]
+
+        [Given(@"I have entered Juan as the name and default Errors and Difficulty")]
+        [When(@"I enter the correct word")]
+        [Then(@"I should be told that I won")]
+
         public void WinGame()
         {
             _driver.Navigate()

@@ -117,7 +117,7 @@
 }
 <section class="input-section">
     <div id="left-side" class="left-side">
-        <h2>Bienvenido @Html.DisplayFor(m => m.Nombre)!</h2>
+        <h2 id="nametag" class="nametag">Bienvenido @Html.DisplayFor(m => m.Nombre)!</h2>
         <div style="display: flex; flex-direction:column ; justify-content: center; align-items: center" class="form-group">
             <div>
                 @Html.TextBoxFor(m => m.PalabraIntentada, new Dictionary<String, object>
