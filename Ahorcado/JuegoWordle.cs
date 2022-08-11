@@ -32,22 +32,14 @@ namespace Wordle
         public string[] palabrasMedio = new string[] { "BORDES", "CARROS", "CARCEL", "DISCOS" };
         public string[] palabrasDificil = new string[] { "CRUCEROS", "SIMBOLOS", "CREDITOS", "CERROJOS" };
 
-        public JuegoWordle(string _nombre, int _maxIntentos, int _dificiultad)
+        public JuegoWordle(string _nombre, int _maxIntentos, int _dificultad)
         {
             nombre = _nombre;
             maxIntentos = _maxIntentos;
-            dificultad = _dificiultad;
+            dificultad = _dificultad;
             intentos = 0;
-            if (nombre == null || maxIntentos == 0 || dificultad == 0)
-            {
-                return;
-            }
-            if (puntajes.TryGetValue(nombre, out _))
-            { }
-            else
-            {
-                puntajes.Add(nombre, 0);
-            }
+            if (!(puntajes.TryGetValue(nombre, out _)))
+            { puntajes.Add(nombre, 0); }
             SetPalabra();
             stopWatch.Start();
         }
