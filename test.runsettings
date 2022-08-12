@@ -37,7 +37,7 @@
 	</DataCollectionRunSettings>
 
 	<!-- Configuration for loggers -->
-	<!--<LoggerRunSettings>
+	<LoggerRunSettings>
 		<Loggers>
 			<Logger friendlyName="console" enabled="True">
 				<Configuration>
@@ -56,6 +56,6 @@
 			</Logger>
 			<Logger friendlyName="blame" enabled="True" />
 		</Loggers>
-	</LoggerRunSettings>-->
+	</LoggerRunSettings>
 
 </RunSettings>

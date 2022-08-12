@@ -12,7 +12,7 @@ namespace UITests
     [TechTalk.SpecFlow.Binding]
     public class WordleSpecflow : IDisposable
     {
-        private int time = 8000;
+        private int time = 6000;
 
         public IWebDriver _driver;
         //String path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
@@ -26,62 +26,7 @@ namespace UITests
             _driver.Dispose();
         }
 
-        [BeforeScenario]
-
-        [Fact]
-        [Given(@"I have entered default Errors and Difficulty")]
-        public void GivenIHaveEnteredJuanAsName()
-        {
-            _driver.Navigate()
-                .GoToUrl(baseURL);
-
-            Thread.Sleep(time);
-
-
-
-            _driver.FindElement(By.Id("Name"))
-                .SendKeys("Juan");
-
-            Thread.Sleep(1000);
-
-            _driver.FindElement(By.Id("Play"))
-                .Click();
-
-            Thread.Sleep(1000);
-
-            //var palabraIntentada = _driver.FindElement(By.Id("palabra-intentada"));
-
-            //var bienvenida = _driver.FindElement(By.Id("nametag"));
-
-            //Assert.Equal("Bienvenido Juan!", _driver.FindElement(By.Id("nametag")).GetAttribute("value"));
-        }
-
-        [When(@"I enter Juan as the Name")]
-        public void WhenIEnterJuanAsTheName()
-        {
-            _driver.FindElement(By.Id("Name"))
-                .SendKeys("Juan");
-
-            Thread.Sleep(1000);
-
-            _driver.FindElement(By.Id("Play"))
-                .Click();
-        }
-
-        [Then(@"I should be told Bienvenido JUAN")]
-
-        public void ThenIShouldBeToldBienvenidoJUAN()
-        {
-            //string bienvenida = _driver.FindElement(By.Id("nametag")).Text;
-           // Assert.NotEqual("Bienvenido Juan!", _driver.FindElement(By.Id("nametag")));
-        }
-
-        [AfterScenario]
-
-
-
-
-        [Fact]
+        
 
         [Given(@"I have entered Juan as the name and default Errors and Difficulty")]
         [When(@"I enter Juan as the word to guess")]
@@ -124,8 +69,6 @@ namespace UITests
 
         }
 
-        [Fact]
-
         [Given(@"I have entered Juan as the name and default Errors and Difficulty")]
         [When(@"I enter Juan as the word to guess 4 times")]
         [Then(@"I should be told that I lost")]
@@ -167,8 +110,6 @@ namespace UITests
             Thread.Sleep(1000);
             Assert.Equal("false", juegoGanado.GetAttribute("value"));
         }
-
-        [Fact]
 
         [Given(@"I have entered Juan as the name and default Errors and Difficulty")]
         [When(@"I enter the correct word")]

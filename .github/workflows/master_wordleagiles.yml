@@ -64,7 +64,7 @@ jobs:
             dotnet sonarscanner end /d:sonar.login="b758f9ec0969c33bd004383e176eb4b13fa1bc03";
                 
       - name: Run UITests
-        run: dotnet test UITests/UITests.csproj --no-restore --verbosity normal
+        run: dotnet test WordleUITests/WordleUITests.csproj --no-restore --verbosity normal
     
     
   deploy:
