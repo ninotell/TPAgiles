@@ -14,7 +14,7 @@ namespace WordleUITests.StepDefinitions
         [BeforeScenario]
         public void TestInitialize()
         {
-            var path = AppDomain.CurrentDomain.BaseDirectory + @"\Drivers";
+            var path = AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\Drivers";
             //driver = new InternetExplorerDriver(path);
             _driver = new ChromeDriver(path);
             baseURL = "https://wordleagiles.azurewebsites.net/";
